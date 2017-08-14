@@ -1,0 +1,21 @@
+@import './common/var';
+.post{
+  padding:24px;
+  h1{
+    margin-bottom:0.3em;
+  }
+  .post-info{
+    margin: 0.5em 0;
+    padding-bottom: 1em;
+    font-size: $smallText;
+    span{
+      padding-right: 1.5em;
+    }
+    a{
+      padding-right:0.5em;
+    }
+  }
+  .post-content{
+    font-size: $contentText;
+  }
+}

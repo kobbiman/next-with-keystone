@@ -1,0 +1,46 @@
+@import './common/var';
+.bolg{
+  @include clearfix();
+  padding:$defaultPadding;
+  a{
+    color:inherit;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  h2{
+    color:$gray;
+    height:1em;
+  }
+  .bolg-item{
+    h3{
+      font-size: $titleText;
+      margin:0.5em 0;
+    }
+    p{
+      font-size: $smallText;
+      margin:0.5em 0;
+    }
+    padding-bottom: $defaultPadding;
+  }
+  .category{
+    float:right;
+    width:150px;
+  }
+  .category-list{
+    color:$gray;
+    a{
+      &.active{
+        color:$defaultFontColor;
+      }
+      &:hover{
+        color:$defaultFontColor;
+      }
+    }
+  }
+  .posts{
+    float:left;
+  }
+
+}
