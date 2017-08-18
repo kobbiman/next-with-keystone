@@ -2,16 +2,25 @@
 @import './var';
 *{
   box-sizing: border-box;
+  position:relative;
+  z-index: 2;
 }
 body{
   margin:0;
   padding:0;
   box-sizing: border-box;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif 'Microsoft Yahi';
+  color:$black;
+  background-color:$white;
+  transition: all 2s;
+  &.dark{
+    background-color:$black;
+    color:$white;
+  }
 }
 nav {
   height: 50px;
-  widht:100%;
+  width:100%;
   line-height: 50px;
   padding: 0 24px;
   a{

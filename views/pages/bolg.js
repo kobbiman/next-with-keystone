@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Main from '../layouts/main'
 import fetch from 'isomorphic-fetch'
-import common from '../common'
+import { uri } from '../common'
 import bolgStyle from '../styles/bolg.scss'
 
 export default class extends React.Component {
@@ -11,7 +11,7 @@ export default class extends React.Component {
   }
 
   static async getInitialProps ({ req, query }) {
-    const url = common.setQS(common.getAbsoluteUrl(req, '/data/bolg'), query)
+    const url = uri.setQS(uri.getAbsoluteUrl(req, '/data/bolg'), query)
     const res = await fetch(url)
     const json = await res.json()
     return {

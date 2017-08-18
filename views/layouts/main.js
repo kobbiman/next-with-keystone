@@ -13,14 +13,19 @@ Router.onRouteChangeComplete = (url) => {
 }
 
 
-export default ({ children }) => (
-  <div>
-    <Head>
-      <title>this is mine</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-    </Head>
-    <Header/>
-    <style dangerouslySetInnerHTML={{__html: layoutStyle}}></style>
-    {children}
-  </div>
-)
+export default class extends React.Component {
+
+  render () {
+    return (
+      <div>
+        <Head>
+          <title>this is mine</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+        </Head>
+        <Header/>
+        <style dangerouslySetInnerHTML={{__html: layoutStyle}}></style>
+        {this.props.children}
+      </div>
+    )
+  }
+}

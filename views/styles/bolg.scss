@@ -32,10 +32,10 @@
     color:$gray;
     a{
       &.active{
-        color:$defaultFontColor;
+        color:$black;
       }
       &:hover{
-        color:$defaultFontColor;
+        color:$black;
       }
     }
   }
