@@ -49,7 +49,7 @@ exports = module.exports = function(req, res) {
     })
   }
   const setFromatPost = (res) => {
-    res.results = res.results.map(({author, content, slug, title}) => {
+    res.results = res.results.map(({author, content, slug, title, image}) => {
       return {
         author: {
           name: {
@@ -61,8 +61,10 @@ exports = module.exports = function(req, res) {
           brief: content.brief
         },
         id: slug,
+        image: {
+          secure_url: image.secure_url
+        },
         title
-
       }
     })
     return res

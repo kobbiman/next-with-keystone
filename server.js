@@ -8,13 +8,16 @@ keystone.init({
   'user model': 'User',
 	'static': 'public',
   'cookie secret': '(your secret here)',
-  'auto update': true
+  'auto update': true,
+  'wysiwyg images': true,
+  // 'wysiwyg cloudinary images': true,
+  'cloudinary config': 'cloudinary://285573442532891:ile_fG7bcv1GOFYtJc1AvJsXNBw@dlaf2azhv'
 })
 
 keystone.import('models');
 
 keystone.set('nav', {
-	posts: ['posts', 'post-categories'],
+	posts: ['posts', 'post-categories', 'post-comments'],
 	users: 'users',
 });
 

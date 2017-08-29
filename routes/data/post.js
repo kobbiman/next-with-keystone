@@ -15,10 +15,11 @@ exports = module.exports = function(req, res) {
 
   const getFormatPost = ({
     title,categories,
-    content: {extended},
+    content: { extended },
     author: {
-      name: {first, last}
-    }
+      name: { first, last }
+    },
+    image: { secure_url }
   }) => {
     return {
       title,
@@ -30,6 +31,9 @@ exports = module.exports = function(req, res) {
           first,
           last
         }
+      },
+      image: {
+        secure_url
       },
       categories: categories.map(({name, key}) => {return {name, key}})
     }
