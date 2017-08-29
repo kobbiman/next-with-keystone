@@ -45,6 +45,7 @@ const data = importRoutes('./data');
       })
 
       app.get('/data/:type', data.index)
+      app.post('/data/:type', data.index)
 
       app.get('*', (req, res) => {
         handle(req, res)

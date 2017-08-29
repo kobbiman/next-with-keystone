@@ -24,8 +24,8 @@
     "sass-loader": "^4.1.1"
   },
   "scripts": {
-    "dev": "set NODE_ENV=dev&&node server.js",
-    "start": "set NODE_ENV=production node&&server.js",
+    "dev": "NODE_ENV=dev node server.js",
+    "start": "NODE_ENV=production node server.js",
     "build": "next build ./views"
   },
   "author": "chen-zzz",

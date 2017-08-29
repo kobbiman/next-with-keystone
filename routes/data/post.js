@@ -2,15 +2,19 @@ const keystone = require('keystone')
 
 exports = module.exports = function(req, res) {
   const getPost = () => {
-    return new Promise((resolve, reject) => {
-      keystone.list('Post').model.findOne({slug: req.query.id}).populate('author categories').exec((err, result) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
-      })
-    })
+    return keystone.list('Post').model
+    .findOne({slug: req.query.id})
+    .populate('author categories')
+    .exec()
+  }
+
+  const getComments = (result) => {
+    return keystone.list('PostComments').model.find()
+      .where({post: result})
+      .where('commentState', 'published')
+      .populate('author')
+			.sort('-publishedOn')
+      .exec()
   }
 
   const getFormatPost = ({
@@ -23,14 +27,9 @@ exports = module.exports = function(req, res) {
   }) => {
     return {
       title,
-      content: {
-        extended
-      },
+      content: { extended },
       author: {
-        name: {
-          first,
-          last
-        }
+        name: { first, last }
       },
       image: {
         secure_url
@@ -39,11 +38,26 @@ exports = module.exports = function(req, res) {
     }
   }
 
+  const getFormatComment = (comResult) => {
+    return comResult.map(({content, publishedOn, user, author: { name: { first, last }}}) => {
+      return {content, publishedOn, user, author: { name: { first, last }}}
+    })
+  }
+
   if (req.query.id) {
-    getPost().then((result) => {
-      res.send(JSON.stringify(getFormatPost(result)))
+    getPost().then((postResult) => {
+      getComments(postResult).then((comResult) => {
+        let thePost = getFormatPost(postResult)
+        thePost.comments = getFormatComment(comResult)
+
+        //respones the JSON
+        res.send(JSON.stringify(thePost))
+
+      }).catch((err) => {
+        throw err
+      })
     }).catch((err) => {
-      res.send('nothing be finded')
+      throw err
     })
   } else {
     res.send('nothing be finded')

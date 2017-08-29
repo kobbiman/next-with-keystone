@@ -1,11 +1,11 @@
 const data = {
   bolg: require('./bolg'),
-  post: require('./post')
+  post: require('./post'),
+  addcomment: require('./addcomment')
 }
 
 
 exports = module.exports = function(req, res) {
-  console.log(req.params.type)
   if(data[req.params.type]) {
     data[req.params.type](req, res)
   } else {

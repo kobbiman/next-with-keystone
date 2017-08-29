@@ -9,6 +9,7 @@ import postStyle from '../styles/post.scss'
 export default class extends React.Component {
   constructor (props) {
     super(props)
+    this.addComment = this.addComment.bind(this)
   }
 
   static async getInitialProps ({req, query}) {
@@ -18,6 +19,15 @@ export default class extends React.Component {
     return {
       data: json
     }
+  }
+
+  async addComment (ev) {
+    ev.preventDefault()
+    const res = await fetch(ev.target.action, {
+      method: ev.target.method,
+      body: new FormData(ev.target)
+    })
+    console.log(res);
   }
 
   render () {
@@ -44,6 +54,34 @@ export default class extends React.Component {
             </span>
           </p>
           <div className="post-content" dangerouslySetInnerHTML={{__html: data.content.extended}}></div>
+        </div>
+        <div className="comments">
+          <h3 className="comments-title">评论</h3>
+          <div className="comments-list">{
+            data.comments.map((item, index) => {
+              const name = item.author.name
+              return (
+                <div className="comments-item" key={index}>
+                  <label className="comments-user">
+                    {name ? `${name.first} ${name.last}` : item.user}
+                  </label>: {item.content}
+                </div>
+              )
+            })
+          }</div>
+          <div className="comments-add">
+            <form action="/data/addcomment" method="POST" onSubmit={this.addComment}>
+              <div>
+                <label>内容</label><textarea name="content"></textarea>
+              </div>
+              <div>
+                <label>姓名</label><input type="text" name="user"/>
+              </div>
+              <div>
+                <button>send</button>
+              </div>
+            </form>
+          </div>
         </div>
       </Main>
     )
