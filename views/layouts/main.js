@@ -19,7 +19,7 @@ export default class extends React.Component {
     return (
       <div>
         <Head>
-          <title>this is mine</title>
+          <title>Chen的博客</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
         </Head>
         <Header/>

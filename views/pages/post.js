@@ -9,7 +9,7 @@ import postStyle from '../styles/post.scss'
 export default class extends React.Component {
   constructor (props) {
     super(props)
-    this.addComment = this.addComment.bind(this)
+    // this.addComment = this.addComment.bind(this)
   }
 
   static async getInitialProps ({req, query}) {
@@ -21,14 +21,14 @@ export default class extends React.Component {
     }
   }
 
-  async addComment (ev) {
-    ev.preventDefault()
-    const res = await fetch(ev.target.action, {
-      method: ev.target.method,
-      body: new FormData(ev.target)
-    })
-    console.log(res);
-  }
+  // async addComment (ev) {
+  //   ev.preventDefault()
+  //   const res = await fetch(ev.target.action, {
+  //     method: ev.target.method,
+  //     body: new FormData(ev.target)
+  //   })
+  //   console.log(res);
+  // }
 
   render () {
     const data = this.props.data
@@ -55,7 +55,7 @@ export default class extends React.Component {
           </p>
           <div className="post-content" dangerouslySetInnerHTML={{__html: data.content.extended}}></div>
         </div>
-        <div className="comments">
+        {/* <div className="comments">
           <h3 className="comments-title">评论</h3>
           <div className="comments-list">{
             data.comments.map((item, index) => {
@@ -82,7 +82,7 @@ export default class extends React.Component {
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
       </Main>
     )
   }

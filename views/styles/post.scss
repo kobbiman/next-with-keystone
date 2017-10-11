@@ -1,6 +1,6 @@
 @import './common/var';
 .post{
-  padding:24px;
+  @include box();
   h1{
     margin-bottom:0.3em;
   }

@@ -8,6 +8,7 @@ import bolgStyle from '../styles/bolg.scss'
 export default class extends React.Component {
   constructor (props) {
     super(props)
+    this.totalCategory = this.totalCategory.bind(this)
   }
 
   static async getInitialProps ({ req, query }) {
@@ -60,13 +61,26 @@ export default class extends React.Component {
     )
   }
 
+  totalCategory () {
+    this.setState({
+      isShow: !(this.state && this.state.isShow)
+    })
+  }
+
+  getHeight () {
+    return `${(this.props.data.PostCategory.length + 1) * 22 + 48}px`
+  }
+
   render () {
     const category = this.props.url.query.category
     return (
       <Main>
         <style dangerouslySetInnerHTML={{__html: bolgStyle}}></style>
-        <div className="bolg">
-          <div className="category">
+        <div className={`bolg ${(this.state && this.state.isShow) ? 'active' : ''}`}>
+          <button className="category-button" onClick={this.totalCategory}>分类</button>
+          <div
+            className={`category`}
+            style={{height: (this.state && this.state.isShow) ? this.getHeight() : 0}}>
             <h2> </h2>
             <div className="category-list">
               <div>

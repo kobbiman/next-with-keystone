@@ -19,3 +19,22 @@ $gray: #aaaaaa;
     clear:both;
   }
 }
+
+@mixin box() {
+  @include clearfix();
+  padding:$defaultPadding;
+  padding-top: 0;
+  img {
+    max-width: 100% !important;
+  }
+}
+
+@mixin clearinput() {
+  background-color:inherit;
+  font-size: inherit;
+  color:inherit;
+  border:none;
+  padding:0;
+  margin:0;
+  outline: none;
+}

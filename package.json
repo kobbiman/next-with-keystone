@@ -4,6 +4,7 @@
   "description": "a small demo",
   "main": "server.js",
   "dependencies": {
+    "cross-env": "^5.0.5",
     "keystone": "^4.0.0-beta.5",
     "lodash": "^4.17.4",
     "lru-cache": "^4.1.1",
@@ -24,8 +25,8 @@
     "sass-loader": "^4.1.1"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "dev": "cross-env NODE_ENV=dev node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "build": "next build ./views"
   },
   "author": "chen-zzz",
